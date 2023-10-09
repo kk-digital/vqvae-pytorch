@@ -145,6 +145,7 @@ class Decoder(nn.Module):
         h = self.conv(x)
         h = self.residual_stack(h)
         x_recon = self.upconv(h)
+        x_recon = F.pad(x_recon, (0, 0, 1, 0))  # Padding the height by 1
         return x_recon
 
 
